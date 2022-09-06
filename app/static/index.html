@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deta Chats</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+        <link rel="shortcut icon" type="image/png" href="/media/logo-min.png" />
+    </head>
+    <body>
+        <header class="header">
+            <center style="width:100%;"><span class="title">Deta Chats</span></center>
+        </header>
+        <div class="body">
+            <div class="sidebar">
+                <div class="username">
+                    Set your Username<br />
+                    <input type="text" id="Chats.username" class="username-input" placeholder="Enter a username.." />
+                </div>
+                <div class="intro">
+                    <u>Welcome to Deta Chats.</u><br /><br />
+                    This project is open sourced at Github and is hosted completely free.<br />
+                    <ul>
+                        <li>Messages and data are stored on Deta Base</li>
+                        <li>Frontend app is hosted on Deta Micros</li>
+                        <li>Websocket backend runs on Fly.io</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                <div class="chat-box">
+                    <div id="Chats.box" class="chats">
+                        Loading messages...
+                    </div>
+                </div>
+                <form id="Chats.sendForm" class="input-box">
+                    <input autocomplete="off" id="Chats.input" type="text" placeholder="Enter your message" />
+                    <svg id="Chats.sendBtn" class="send-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/js/Chats.js"></script>
+        <script type="text/javascript" src="/js/Socket.js"></script>
+        <script type="text/javascript" src="/js/App.js"></script>
+    </body>
+</html>
