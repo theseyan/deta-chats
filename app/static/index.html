@@ -7,7 +7,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/main.css" />
-        <link rel="shortcut icon" type="image/png" href="/media/logo-min.png" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/media/logo-min.svg" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script type="text/javascript">
+            window.onRecaptchaSubmit = null;
+            function recaptchaSubmit(token) {
+                window.onRecaptchaSubmit(token);
+            }
+        </script>
     </head>
     <body>
         <header class="header">
@@ -15,16 +22,17 @@
         </header>
         <div class="body">
             <div class="sidebar">
-                <div class="username">
-                    Set your Username<br />
-                    <input type="text" id="Chats.username" class="username-input" placeholder="Enter a username.." />
+                <div id="User.box" class="username">
+                    <div id="User.pfp" class="pfp"></div>
+                    <div id="User.username" class="text"></div>
                 </div>
+                <span id="User.logOutBtn" style="margin-left:15px;" class="btn btn-white">Log Out</span>
                 <div class="intro">
                     <u>Welcome to Deta Chats.</u><br /><br />
-                    This project is open sourced at Github and is hosted completely free.<br />
+                    This project is <a target="_blank" href="https://github.com/theseyan/deta-chats">open sourced at Github</a> and is hosted completely free.<br />
                     <ul>
-                        <li>Messages and data are stored on Deta Base</li>
-                        <li>Frontend app is hosted on Deta Micros</li>
+                        <li>Messages and Users are stored in Deta Base</li>
+                        <li>Frontend app is hosted on a Deta Micro</li>
                         <li>Websocket backend runs on Fly.io</li>
                     </ul>
                 </div>
@@ -42,6 +50,8 @@
             </div>
         </div>
 
+        <script type="text/javascript" src="/js/Constants.js"></script>
+        <script type="text/javascript" src="/js/Auth.js"></script>
         <script type="text/javascript" src="/js/Chats.js"></script>
         <script type="text/javascript" src="/js/Socket.js"></script>
         <script type="text/javascript" src="/js/App.js"></script>

@@ -2,8 +2,6 @@
  * Handles Chat UI
 */
 
-function _(id) {return document.getElementById(id);}
-
 var Chats = new function() {
 
     // Stores list of loaded messages
@@ -48,16 +46,10 @@ var Chats = new function() {
 
 // Register event handlers
 var handleSendSubmit = () => {
-    var username = _('Chats.username').value;
     var content = _('Chats.input').value;
 
-    // If username is provided, save it to local storage for future autofill
-    if(username != '') {
-        localStorage.setItem('detaChats_username', username);
-    }
-
     // Send the message
-    API.sendMessage(username, content);
+    API.sendMessage(content);
 
     // Clear input
     _('Chats.input').value = '';

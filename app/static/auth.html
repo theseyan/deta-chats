@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deta Chats</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/auth.css" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/media/logo-min.svg" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script type="text/javascript">
+            window.onRecaptchaSubmit = null;
+            function recaptchaSubmit(token) {
+                window.onRecaptchaSubmit(token);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="center">
+            <h1>Deta Chats</h1>
+            <form id="Auth.box" class="auth-box">
+                Enter a Username<br />
+                <input type="text" id="Auth.username" class="username-input" placeholder="Enter a username.." /><br />
+                Enter Password<br />
+                <input type="password" id="Auth.password" class="username-input" placeholder="Enter a password.." /><br />
+                <div id="recaptchaWidget" class="g-recaptcha" data-sitekey="6LdNROEhAAAAAKjCXoc3wKu3do7bisQsMsRJ7_XH" data-callback="recaptchaSubmit" data-size="invisible"></div>
+                
+                <div class="sl-box">
+                    <span id="Auth.signUpBtn" class="btn btn-primary">Sign Up</span>
+                    <span id="Auth.loginBtn" class="btn btn-white">Login</span>
+                </div>
+                <div class="gr-info">
+                    This site is protected by reCAPTCHA and the Google
+                    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript" src="/js/Constants.js"></script>
+        <script type="text/javascript" src="/js/AuthPage.js"></script>
+    </body>
+</html>

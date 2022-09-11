@@ -2,21 +2,15 @@
  * Handles Websocket connection
 */
 
-// Replace with Websocket server URL
-const WS_SERVER_URL = 'wss://deta-chats.fly.dev';
-//const WS_SERVER_URL = 'ws://localhost:9001';
-
-// Connect to the server
-const Socket = new WebSocket(WS_SERVER_URL);
+var Socket;
 
 // Socket API
 var API = new function() {
 
     // Sends a message to the server
-    this.sendMessage = (username, message) => {
+    this.sendMessage = (message) => {
         Socket.send(JSON.stringify({
             type: 'message',
-            username: username,
             message: message
         }));
     };
@@ -30,36 +24,55 @@ var API = new function() {
 
 };
 
-// Connection opened
-Socket.addEventListener('open', (event) => {
-    console.log('Connected to Websocket server!');
+// Authenticate and fetch logged in user details
+User.fetchUser().then(data => {
 
-    // Load history
-    API.fetchMessages();
-});
+    // Set Username and PFP in UI
+    _('User.username').innerHTML = data.username;
+    _('User.pfp').style.background = `url('https://avatars.dicebear.com/api/identicon/${encodeURIComponent(data.username)}.svg')`;
 
-// Listen for messages
-Socket.addEventListener('message', (event) => {
-    var message = JSON.parse(event.data);
+    // Connect to the server
+    Socket = new WebSocket(WS_SERVER_URL + '/' + User.token);
 
-    if(message.type == 'message') {
-        // Add the message to chats box
-        Chats.addMessage(message.username, message.message);
-    }
-    else if(message.type == 'history') {
-        // Render history messages
-        message.messages.reverse();
-        Chats.box.innerHTML = '';
-        Chats.renderMessages(message.messages);
-    }
-});
+    // Connection opened
+    Socket.addEventListener('open', (event) => {
+        console.log('Connected to Websocket server!');
 
-// Handle close event
-Socket.addEventListener('close', (event) => {
-    alert('Connection to the server was closed.');
-});
+        // Load history
+        API.fetchMessages();
+    });
 
-// Handle error event
-Socket.addEventListener('error', (err) => {
-    alert('A Websocket error occured: ' + err);
+    // Listen for messages
+    Socket.addEventListener('message', (event) => {
+        var message = JSON.parse(event.data);
+
+        if(message.type == 'message') {
+            // Add the message to chats box
+            Chats.addMessage(message.username, message.message);
+        }
+        else if(message.type == 'history') {
+            // Render history messages
+            message.messages.reverse();
+            Chats.box.innerHTML = '';
+            Chats.renderMessages(message.messages);
+        }
+    });
+
+    // Handle close event
+    Socket.addEventListener('close', (event) => {
+        alert('Connection to the server was closed.');
+    });
+
+    // Handle error event
+    Socket.addEventListener('error', (err) => {
+        alert('A Websocket error occured: ' + err);
+    });
+
+}).catch(e => {
+    
+    // Failed to authenticate / fetch details from token
+    // Log out
+
+    User.logOut();
+
 });

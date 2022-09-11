@@ -9,9 +9,14 @@
   "author": "Sayan J. Das",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "deta": "^1.1.0",
     "html-escaper": "^3.0.3",
+    "hyper-express": "^6.4.5",
+    "jsonwebtoken": "^8.5.1",
     "randomstring": "^1.2.2",
-    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.10.0"
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.10.0",
+    "uuid": "^9.0.0"
   }
 }
