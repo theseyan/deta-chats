@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This project is no longer maintained and likely does not work with the latest versions of Deta Cloud. It was originally written for Deta Space's code marathon and to demonstrate the possibility of a realtime, persisted live chat application running on fully free services.
+
 # Deta Chats
 
 A simple Chat app built using vanilla HTML5, CSS3 and Javascript that runs on Deta & Fly.io, completely free!
